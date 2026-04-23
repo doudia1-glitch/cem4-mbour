@@ -35,6 +35,13 @@
     </nav>
   </header>
 
+  <div class="fixed bottom-6 left-6 z-[90] max-w-sm hidden md:block" data-aos="fade-right">
+    <div class="bg-blue-900 text-white p-4 rounded-2xl shadow-2xl border-l-4 border-amber-500">
+      <p class="text-[10px] font-black uppercase tracking-widest text-amber-500 mb-2 italic">Dernière Actualité</p>
+      <p class="text-xs font-bold leading-relaxed">📅 Réunion des parents d'élèves ce samedi à 09h00 en salle 12.</p>
+    </div>
+  </div>
+
   <section id="accueil" class="relative min-h-screen flex items-center pt-20 bg-slate-900 overflow-hidden">
     <div class="absolute inset-0 z-0 overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900/80 to-transparent z-10"></div>
@@ -53,101 +60,170 @@
     </div>
   </section>
 
+  <section id="direction" class="py-32 bg-white px-8">
+    <div class="container mx-auto max-w-6xl">
+      <div class="grid md:grid-cols-2 gap-20 items-center">
+        <div class="relative" data-aos="fade-right">
+          <div class="aspect-[4/5] bg-slate-200 rounded-[3rem] overflow-hidden shadow-2xl relative z-10">
+            <div class="absolute inset-0 flex items-center justify-center text-slate-400 font-bold tracking-tighter uppercase text-xl">Photo de la Direction</div>
+          </div>
+          <div class="absolute -bottom-6 -right-6 w-48 h-48 bg-blue-100 rounded-full -z-0"></div>
+        </div>
+        <div data-aos="fade-left">
+          <h3 class="section-title text-blue-700 text-xs font-black uppercase tracking-[0.3em] mb-4">Direction Générale</h3>
+          <h4 class="text-4xl font-black mb-8">Le Mot du Principal</h4>
+          <p class="text-slate-600 italic text-xl leading-relaxed mb-8 border-l-4 border-blue-700 pl-6">
+            "Notre établissement s'engage chaque jour pour offrir un cadre d'excellence et de rigueur. Ce site est le pont entre l'administration, les familles et nos élèves."
+          </p>
+          <div class="space-y-4 text-slate-500 text-sm leading-relaxed mb-10">
+            <p>Depuis son ouverture, le CEM 4 de Mbour prône des valeurs de discipline et de dépassement de soi. Nous mettons à jour nos outils pour faciliter le suivi pédagogique de chaque enfant.</p>
+          </div>
+          <div class="font-black text-slate-900 uppercase tracking-widest text-xs">
+            Monsieur le Principal <br> <span class="text-blue-700 tracking-normal">CEM 4 MBOUR</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="compositions" class="py-24 bg-slate-100 px-8 relative overflow-hidden">
     <div class="container mx-auto max-w-4xl text-center relative z-10">
         <h3 class="text-blue-700 font-black uppercase tracking-widest text-[10px] mb-4">Examens & Concours</h3>
         <h4 class="text-4xl font-black mb-6 uppercase tracking-tighter">Listes & Numéros de Table</h4>
-        <p class="text-slate-500 mb-12 text-sm italic">Saisissez votre nom pour retrouver votre salle de composition.</p>
+        <p class="text-slate-500 mb-12 text-sm italic">Saisissez votre matricule ou nom pour retrouver votre salle de composition.</p>
         
         <div class="bg-white p-2 rounded-3xl shadow-2xl flex flex-col md:flex-row gap-2 border border-slate-200">
-            <input id="search-input" type="text" placeholder="Ex: NDIAYE Fatou..." class="flex-1 px-8 py-5 rounded-2xl bg-slate-50 outline-none focus:ring-2 focus:ring-blue-700 transition font-bold text-lg">
-            <button onclick="rechercherEleve()" class="bg-blue-900 text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest hover:bg-blue-700 transition active:scale-95">Rechercher</button>
+            <input type="text" placeholder="Ex: NDIAYE Fatou..." class="flex-1 px-8 py-5 rounded-2xl bg-slate-50 outline-none focus:ring-2 focus:ring-blue-700 transition font-bold">
+            <button class="bg-blue-900 text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest hover:bg-blue-700 transition">Rechercher</button>
         </div>
-
-        <div id="search-results" class="mt-10 text-left max-w-2xl mx-auto space-y-4"></div>
-
-        <div class="mt-12 flex justify-center gap-10 text-[10px] font-black uppercase text-slate-400 tracking-widest">
+        <div class="mt-8 flex justify-center gap-10 text-[10px] font-black uppercase text-slate-400 tracking-widest">
             <span>📚 BFEM 2026</span>
             <span>📝 Compositions Semestrielles</span>
         </div>
     </div>
   </section>
 
-  <footer class="bg-slate-950 text-white py-12 px-8">
-    <div class="container mx-auto text-center">
-      <div class="text-[9px] font-black uppercase tracking-[0.3em] text-slate-700">
+  <section id="personnel" class="py-32 bg-white px-8">
+    <div class="container mx-auto">
+        <div class="text-center mb-20" data-aos="fade-up">
+            <h3 class="text-blue-700 text-xs font-black uppercase tracking-[0.3em] mb-4">Corps Professoral</h3>
+            <h4 class="text-4xl font-black uppercase tracking-tighter">Présentation par Départements</h4>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-12">
+            <div class="text-center group" data-aos="fade-up" data-aos-delay="100">
+                <div class="aspect-square rounded-full bg-slate-100 mb-6 overflow-hidden border-4 border-white shadow-xl group-hover:border-blue-700 transition duration-500 flex items-center justify-center italic text-slate-400">MATHS</div>
+                <h5 class="text-sm font-black uppercase mb-1">Dép. Mathématiques</h5>
+                <p class="text-[10px] font-bold text-slate-400 italic">Chef de dépt : M. SARR</p>
+            </div>
+            <div class="text-center group" data-aos="fade-up" data-aos-delay="200">
+                <div class="aspect-square rounded-full bg-slate-100 mb-6 overflow-hidden border-4 border-white shadow-xl group-hover:border-blue-700 transition duration-500 flex items-center justify-center italic text-slate-400">FRANÇAIS</div>
+                <h5 class="text-sm font-black uppercase mb-1">Dép. Français</h5>
+                <p class="text-[10px] font-bold text-slate-400 italic">Chef de dépt : Mme DIOP</p>
+            </div>
+            <div class="text-center group" data-aos="fade-up" data-aos-delay="300">
+                <div class="aspect-square rounded-full bg-slate-100 mb-6 overflow-hidden border-4 border-white shadow-xl group-hover:border-blue-700 transition duration-500 flex items-center justify-center italic text-slate-400">SVT</div>
+                <h5 class="text-sm font-black uppercase mb-1">Dép. S.V.T</h5>
+                <p class="text-[10px] font-bold text-slate-400 italic">Chef de dépt : M. FALL</p>
+            </div>
+            <div class="text-center group" data-aos="fade-up" data-aos-delay="400">
+                <div class="aspect-square rounded-full bg-slate-100 mb-6 overflow-hidden border-4 border-white shadow-xl group-hover:border-blue-700 transition duration-500 flex items-center justify-center italic text-slate-400">P.C</div>
+                <h5 class="text-sm font-black uppercase mb-1">Dép. Sciences Physiques</h5>
+                <p class="text-[10px] font-bold text-slate-400 italic">Chef de dépt : M. GUEYE</p>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-slate-900 text-white px-8">
+    <div class="container mx-auto max-w-5xl">
+        <div class="bg-blue-800/30 border border-blue-700/50 rounded-[3rem] p-12 md:p-20 flex flex-col md:flex-row items-center gap-12">
+            <div class="flex-1">
+                <h4 class="text-3xl font-black mb-6 uppercase tracking-tighter">Documents & Formulaires</h4>
+                <p class="text-blue-200 mb-10 text-sm leading-relaxed">Téléchargez ici les fiches de renseignement, listes de fournitures et règlements intérieurs officiels du collège.</p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#" class="bg-white text-blue-900 px-6 py-4 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-blue-400 hover:text-white transition">📥 Fiche de renseignement</a>
+                    <a href="#" class="bg-blue-700 text-white px-6 py-4 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-blue-600 transition">📥 Règlement Intérieur</a>
+                </div>
+            </div>
+            <div class="w-full md:w-1/3 bg-white/10 rounded-3xl p-8 backdrop-blur border border-white/10 text-center">
+                <p class="text-xs font-bold uppercase tracking-[0.2em] mb-4">Dates Importantes</p>
+                <ul class="space-y-4 text-[10px] font-black uppercase text-blue-300">
+                    <li class="border-b border-white/5 pb-2">Compositions 1 : 15 MAI</li>
+                    <li class="border-b border-white/5 pb-2">Conseil de classe : 20 JUIN</li>
+                    <li>Résultats BFEM : 10 JUILLET</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <section id="espaces" class="py-32 bg-white px-8">
+    <div class="container mx-auto">
+      <div class="bg-blue-700 rounded-[4rem] p-12 md:p-24 relative overflow-hidden shadow-2xl">
+        <div class="relative z-10 grid md:grid-cols-2 gap-20 items-center">
+          <div>
+            <h3 class="text-blue-200 text-xs font-black uppercase tracking-[0.3em] mb-4">Accès Portails</h3>
+            <h4 class="text-4xl md:text-6xl font-black text-white mb-8 leading-[1.1]">Digitalisons<br>l'Éducation.</h4>
+            <p class="text-blue-100 text-lg mb-10 opacity-80 leading-relaxed italic italic">"Une solution pour centraliser les notes, les absences et les ressources pédagogiques."</p>
+          </div>
+          <div class="grid gap-6">
+            <div class="glass-card p-10 rounded-[2.5rem] group hover:bg-blue-900 hover:text-white transition duration-700 cursor-pointer shadow-2xl">
+              <span class="text-[10px] font-black uppercase text-blue-700 group-hover:text-amber-500 transition mb-4 block tracking-widest italic tracking-widest">Portail Parents/Élèves</span>
+              <h5 class="text-2xl font-black mb-4 uppercase">Suivi de Scolarité</h5>
+              <p class="text-slate-400 group-hover:text-blue-200 text-xs leading-relaxed transition">Consultez les notes semestrielles, les absences et les bulletins numériques.</p>
+            </div>
+            <div class="glass-card p-10 rounded-[2.5rem] group hover:bg-slate-900 hover:text-white transition duration-700 cursor-pointer shadow-2xl border-l-8 border-blue-900">
+              <span class="text-[10px] font-black uppercase text-slate-500 group-hover:text-blue-400 transition mb-4 block tracking-widest italic">Accès Administration</span>
+              <h5 class="text-2xl font-black mb-4 uppercase">Espace Personnel</h5>
+              <p class="text-slate-400 group-hover:text-slate-300 text-xs leading-relaxed transition">Gestion des effectifs, saisie des notes et rapports de conseils de classe.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact" class="bg-slate-950 text-white pt-32 pb-12 px-8">
+    <div class="container mx-auto">
+      <div class="grid md:grid-cols-3 gap-20 mb-24">
+        <div>
+          <h5 class="text-2xl font-black mb-8 uppercase tracking-tighter italic">CEM 4 <span class="text-blue-600">MBOUR</span></h5>
+          <p class="text-slate-500 text-sm leading-relaxed mb-8">Un collège d'excellence situé dans la zone résidentielle de Mbour, dédié à la formation des futurs cadres du Sénégal.</p>
+        </div>
+        <div>
+          <h6 class="text-[10px] font-black uppercase tracking-[0.4em] text-blue-600 mb-10 underline italic">Contact Administratif</h6>
+          <ul class="space-y-6 text-xs font-bold uppercase tracking-widest">
+            <li class="flex items-center gap-6"><span class="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center text-blue-600 shadow-xl shadow-blue-900/10 italic">📍</span> Zone Résidentielle, Mbour</li>
+            <li class="flex items-center gap-6"><span class="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center text-blue-600 shadow-xl shadow-blue-900/10 italic">📞</span> +221 33 000 00 00</li>
+          </ul>
+        </div>
+        <div>
+          <h6 class="text-[10px] font-black uppercase tracking-[0.4em] text-blue-600 mb-10 italic">Situation Géo</h6>
+          <div class="h-40 bg-slate-900 rounded-3xl border border-slate-800 overflow-hidden">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3864.444917457788!2d-16.954201025530114!3d14.401584981446777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec18a6ce0e9d2fd%3A0xca909d393a209f58!2sCEM%20IV!5e0!3m2!1sfr!2ssn!4v1711360000000!5m2!1sfr!2ssn"
+              class="w-full h-full border-0 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition duration-700" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-slate-900 pt-12 text-center text-[9px] font-black uppercase tracking-[0.3em] text-slate-700">
         © 2026 - Plateforme Officielle CEM 4 MBOUR - République du Sénégal
       </div>
     </div>
   </footer>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  
   <script>
     AOS.init({ duration: 1200, once: true });
-
-    // 1. CONFIGURATION (À REMPLIR)
-    const supabaseUrl = 'TON_URL_SUPABASE';
-    const supabaseKey = 'TA_CLE_API_ANON';
-    const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
-
-    // 2. FONCTION DE RECHERCHE
-    async function rechercherEleve() {
-        const input = document.getElementById('search-input');
-        const resultDiv = document.getElementById('search-results');
-        const searchTerm = input.value.trim();
-
-        if(!searchTerm) {
-            resultDiv.innerHTML = "<p class='text-amber-600 text-center font-bold text-xs'>Veuillez entrer un nom.</p>";
-            return;
-        }
-
-        // État de chargement
-        resultDiv.innerHTML = "<div class='flex justify-center'><div class='animate-spin h-8 w-8 border-4 border-blue-700 border-t-transparent rounded-full'></div></div>";
-
-        try {
-            const { data, error } = await _supabase
-                .from('compositions')
-                .select('*')
-                .ilike('nom', `%${searchTerm}%`);
-
-            if (error) throw error;
-
-            if (data && data.length > 0) {
-                resultDiv.innerHTML = data.map(e => `
-                    <div class="bg-white p-6 rounded-2xl shadow-lg border-l-8 border-blue-700 transform transition hover:scale-[1.02]">
-                        <div class="flex justify-between items-start mb-4">
-                            <h5 class="font-black text-blue-900 text-xl uppercase">${e.nom}</h5>
-                            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-[10px] font-black uppercase">${e.classe || 'SANS CLASSE'}</span>
-                        </div>
-                        <div class="grid grid-cols-2 gap-4 text-sm">
-                            <div class="bg-slate-50 p-3 rounded-xl">
-                                <p class="text-slate-400 text-[10px] font-bold uppercase">Salle</p>
-                                <p class="font-black text-slate-900">${e.salle}</p>
-                            </div>
-                            <div class="bg-slate-50 p-3 rounded-xl">
-                                <p class="text-slate-400 text-[10px] font-bold uppercase">Numéro de Table</p>
-                                <p class="font-black text-blue-700 text-lg">${e.numero_table}</p>
-                            </div>
-                        </div>
-                    </div>
-                `).join('');
-            } else {
-                resultDiv.innerHTML = `
-                    <div class="bg-red-50 p-6 rounded-2xl border border-red-100 text-center">
-                        <p class="text-red-600 font-bold uppercase text-xs">Aucun résultat pour "${searchTerm}"</p>
-                    </div>`;
-            }
-        } catch (err) {
-            console.error(err);
-            resultDiv.innerHTML = "<p class='text-red-500 text-center font-bold'>Erreur de connexion à la base de données.</p>";
-        }
-    }
-
-    // Recherche avec la touche Entrée
-    document.getElementById('search-input').addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') rechercherEleve();
+    
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) nav.classList.add('header-active');
+      else nav.classList.remove('header-active');
     });
   </script>
 </body>
