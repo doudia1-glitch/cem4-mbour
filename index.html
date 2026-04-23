@@ -226,5 +226,40 @@
       else nav.classList.remove('header-active');
     });
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  // Initialisation de la connexion (Remplace par tes vraies infos)
+  const supabaseUrl = 'TON_URL_SUPABASE';
+  const supabaseKey = 'TA_CLE_API_ANON';
+  const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+  // FONCTION EXPERTE : Recherche dynamique d'élève
+  async function rechercherEleve() {
+    const searchTerm = document.querySelector('input[type="text"]').value;
+    const resultDiv = document.getElementById('search-results'); // Ajoute une div pour les résultats
+
+    if(!searchTerm) return;
+
+    const { data, error } = await supabase
+      .from('compositions')
+      .select('*')
+      .ilike('nom', `%${searchTerm}%`); // Recherche flexible sur le nom
+
+    if (data && data.length > 0) {
+      // Injection dynamique sans recharger la page
+      resultDiv.innerHTML = data.map(e => `
+        <div class="p-4 bg-blue-50 border-l-4 border-blue-700 rounded-lg mb-2">
+          <p class="font-black">${e.nom}</p>
+          <p class="text-xs">Salle : ${e.salle} | Table : ${e.numero_table}</p>
+        </div>
+      `).join('');
+    } else {
+      resultDiv.innerHTML = "<p class='text-red-500 text-xs font-bold'>Aucun élève trouvé.</p>";
+    }
+  }
+
+  // Lier le bouton de recherche
+  document.querySelector('button').addEventListener('click', rechercherEleve);
+</script>
 </body>
 </html>
