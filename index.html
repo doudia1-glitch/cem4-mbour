@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>OFFICIEL | CEM 4 MBOUR - Excellence & Discipline</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <style>
@@ -93,9 +94,10 @@
         <p class="text-slate-500 mb-12 text-sm italic">Saisissez votre matricule ou nom pour retrouver votre salle de composition.</p>
         
         <div class="bg-white p-2 rounded-3xl shadow-2xl flex flex-col md:flex-row gap-2 border border-slate-200">
-            <input type="text" placeholder="Ex: NDIAYE Fatou..." class="flex-1 px-8 py-5 rounded-2xl bg-slate-50 outline-none focus:ring-2 focus:ring-blue-700 transition font-bold">
-            <button class="bg-blue-900 text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest hover:bg-blue-700 transition">Rechercher</button>
+            <input id="search-input" type="text" placeholder="Ex: NDIAYE Fatou..." class="flex-1 px-8 py-5 rounded-2xl bg-slate-50 outline-none focus:ring-2 focus:ring-blue-700 transition font-bold">
+            <button onclick="rechercherEleve()" class="bg-blue-900 text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest hover:bg-blue-700 transition">Rechercher</button>
         </div>
+        <div id="search-results" class="mt-10 max-w-2xl mx-auto space-y-4 text-left"></div>
         <div class="mt-8 flex justify-center gap-10 text-[10px] font-black uppercase text-slate-400 tracking-widest">
             <span>📚 BFEM 2026</span>
             <span>📝 Compositions Semestrielles</span>
@@ -201,7 +203,7 @@
           <h6 class="text-[10px] font-black uppercase tracking-[0.4em] text-blue-600 mb-10 italic">Situation Géo</h6>
           <div class="h-40 bg-slate-900 rounded-3xl border border-slate-800 overflow-hidden">
             <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3864.444917457788!2d-16.954201025530114!3d14.401584981446777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec18a6ce0e9d2fd%3A0xca909d393a209f58!2sCEM%20IV!5e0!3m2!1sfr!2ssn!4v1711360000000!5m2!1sfr!2ssn"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3864.8872583842187!2d-16.974!3d14.422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTTCsDI1JzE5LjIiTiAxNsKwNTgnMjYuNCJX!5e0!3m2!1sfr!2ssn!4v1620000000000"
               class="w-full h-full border-0 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition duration-700" 
               allowfullscreen="" 
               loading="lazy" 
@@ -224,6 +226,62 @@
     window.addEventListener('scroll', () => {
       if (window.scrollY > 100) nav.classList.add('header-active');
       else nav.classList.remove('header-active');
+    });
+
+    // --- LOGIQUE SUPABASE ---
+    const supabaseUrl = 'TON_URL_PROJET'; // METS TON URL ICI
+    const supabaseKey = 'TA_CLE_ANON';    // METS TA CLE ICI
+    const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+    async function rechercherEleve() {
+        const input = document.getElementById('search-input');
+        const resultDiv = document.getElementById('search-results');
+        const query = input.value.trim();
+
+        if(!query) {
+            resultDiv.innerHTML = "<p class='text-amber-600 text-center font-bold text-xs uppercase tracking-widest'>Veuillez saisir un nom</p>";
+            return;
+        }
+
+        resultDiv.innerHTML = "<div class='text-center text-blue-700 animate-pulse font-bold'>Recherche en cours...</div>";
+
+        try {
+            const { data, error } = await _supabase
+                .from('compositions')
+                .select('*')
+                .ilike('nom', `%${query}%`);
+
+            if (error) throw error;
+
+            if (data && data.length > 0) {
+                resultDiv.innerHTML = data.map(eleve => `
+                    <div class="bg-white p-6 rounded-2xl shadow-lg border-l-8 border-blue-700 transition-all" data-aos="fade-up">
+                        <div class="flex justify-between items-start mb-4">
+                            <h5 class="font-black text-blue-900 text-xl uppercase">${eleve.nom}</h5>
+                            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-[10px] font-black uppercase">${eleve.classe || 'N/A'}</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-slate-50 p-4 rounded-xl text-center">
+                                <span class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Salle</span>
+                                <span class="text-lg font-black text-slate-900">${eleve.salle}</span>
+                            </div>
+                            <div class="bg-blue-50 p-4 rounded-xl text-center">
+                                <span class="block text-[10px] font-bold text-blue-400 uppercase mb-1">Table</span>
+                                <span class="text-xl font-black text-blue-700">${eleve.numero_table}</span>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            } else {
+                resultDiv.innerHTML = `<div class="bg-red-50 p-6 rounded-2xl border border-red-100 text-center text-red-600 font-bold uppercase text-xs">Aucun élève trouvé pour "${query}"</div>`;
+            }
+        } catch (err) {
+            resultDiv.innerHTML = "<div class='text-red-500 text-center font-bold text-xs'>ERREUR : Vérifiez vos clés ou droits RLS dans Supabase.</div>";
+        }
+    }
+
+    document.getElementById('search-input').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') rechercherEleve();
     });
   </script>
 </body>
